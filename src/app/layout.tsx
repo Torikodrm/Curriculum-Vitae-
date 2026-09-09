@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { AvatarStage } from "@/components/avatar-stage";
+import { SlashOverlay } from "@/components/slash-overlay";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { profile } from "@/lib/env";
 import "./globals.css";
@@ -13,5 +14,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#10120F", colorScheme: "dark" };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
-  return <html lang="en"><body><SmoothScroll><AvatarStage />{children}</SmoothScroll></body></html>;
+  return <html lang="en"><body><SmoothScroll><AvatarStage />{children}<SlashOverlay /></SmoothScroll></body></html>;
 }

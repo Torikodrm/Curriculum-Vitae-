@@ -28,3 +28,19 @@ h1 { font-size: clamp(5.5rem, 15vw, 15rem); }.hero h1 span { display: block; }.l
 .skip-link { position: fixed; z-index: 20; left: 15px; top: -50px; padding: 10px; background: var(--lime); color: var(--ink); font: 12px "Courier New", monospace; }.skip-link:focus { top: 15px; } :focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
 @media (max-width: 700px) { .site-header { padding: 18px 7vw; }.site-header span { display: none; }.rail { display: none; }.section { min-height: auto; padding: 150px 7vw 90px; }.hero { min-height: 100svh; justify-content: end; }.hero-bottom { margin: 40px 0 0; flex-direction: column; align-items: flex-start; gap: 20px; }.avatar-stage { opacity: .52; }.experience { min-height: auto; }.timeline article { grid-template-columns: 1fr; gap: 10px; }.skills-heading { display: block; }.skills-heading p { margin-top: 28px; }.skills ul { grid-template-columns: 1fr 1fr; margin-top: 40px; }.projects-grid { grid-template-columns: 1fr; }.project-art { height: 220px; }.contact footer { flex-direction: column; gap: 12px; margin-top: 100px; }.contact-link { gap: 15px; font-size: 16px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* --- Santoryu click slash --- */
+.slash-layer { position: fixed; inset: 0; z-index: 50; pointer-events: none; overflow: hidden; }
+.slash { position: fixed; width: 0; height: 0; transform: translate(-50%, -50%); }
+.slash-flash { position: absolute; left: 0; top: 0; width: 90px; height: 90px; transform: translate(-50%, -50%) scale(.2); border-radius: 50%; background: radial-gradient(circle, #ffffffee 0%, #b8ff3888 28%, transparent 65%); animation: slash-flash .45s ease-out forwards; }
+.slash-blade { position: absolute; left: 0; top: 0; height: 4px; width: 190px; border-radius: 999px; transform-origin: center; transform: translate(-50%, -50%) rotate(var(--slash-angle, -25deg)) scaleX(0); background: linear-gradient(90deg, transparent 0%, #eaffea 18%, #ffffff 50%, #b8ff38 82%, transparent 100%); box-shadow: 0 0 14px #b8ff38cc, 0 0 34px #b8ff3866, 0 0 3px #fff; animation: slash-draw .38s cubic-bezier(.15,.8,.25,1) forwards; }
+.slash-blade::after { content: ""; position: absolute; inset: -6px 8px; border-radius: 999px; background: linear-gradient(90deg, transparent, #5360ff44, transparent); filter: blur(3px); }
+.slash-blade-top { width: 140px; margin-top: -26px; opacity: .85; animation-delay: .04s; }
+.slash-blade-bottom { width: 140px; margin-top: 26px; opacity: .85; animation-delay: .08s; }
+.slash-spark { position: absolute; left: 0; top: 0; width: 6px; height: 6px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px #b8ff38; opacity: 0; }
+.slash-spark-a { animation: slash-spark-a .5s ease-out .05s forwards; }
+.slash-spark-b { animation: slash-spark-b .5s ease-out .08s forwards; }
+@keyframes slash-draw { 0% { transform: translate(-50%, -50%) rotate(var(--slash-angle, -25deg)) scaleX(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(-50%, -50%) rotate(var(--slash-angle, -25deg)) scaleX(1); opacity: 0; } }
+@keyframes slash-flash { 0% { transform: translate(-50%, -50%) scale(.2); opacity: .95; } 100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; } }
+@keyframes slash-spark-a { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(70px,-46px) scale(.2); opacity: 0; } }
+@keyframes slash-spark-b { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(-64px,52px) scale(.2); opacity: 0; } }
